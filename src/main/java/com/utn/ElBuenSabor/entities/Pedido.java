@@ -62,6 +62,11 @@ public class Pedido extends Base {
     private Cliente cliente;
 
     @NotNull
+    @OneToOne()
+    @JoinColumn(name = "id_carrito")
+    private Carrito carrito;
+
+    @NotNull
     @Column(name = "fecha_alta")
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaAlta;
