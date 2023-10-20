@@ -20,7 +20,7 @@ public class RecetaArticuloInsumo extends Base{
     private int cantidad;
 
     @NotNull
-    @Column(name = "receta_articulo_insumo")
+    @JoinColumn(name = "receta_articulo_insumo")
     @ManyToOne()
     private Receta recetaArticuloInsumo;
 

@@ -14,7 +14,7 @@ import java.util.Date;
 @Getter
 @Setter
 @ToString
-public class Combo {
+public class Combo extends Base {
     @NotNull
     private String nombreCombo;
 
