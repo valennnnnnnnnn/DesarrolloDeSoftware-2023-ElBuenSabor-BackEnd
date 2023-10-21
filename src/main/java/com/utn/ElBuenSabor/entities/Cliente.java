@@ -1,12 +1,11 @@
 package com.utn.ElBuenSabor.entities;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+import org.antlr.v4.runtime.misc.NotNull;
 
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "cliente")
@@ -14,6 +13,7 @@ import java.util.Date;
 @AllArgsConstructor
 @Getter
 @Setter
+@Builder
 public class Cliente extends Base {
 
     private String nombre;
@@ -27,6 +27,10 @@ public class Cliente extends Base {
     @OneToOne
     @JoinColumn(name = "id_usuario")
     private Usuario usuario;
+
+    @NotNull
+    @OneToMany(mappedBy = "cliente")
+    private List<Domicilio> domicilios;
 
     @Column(name = "fecha_alta")
     @Temporal(TemporalType.TIMESTAMP)
