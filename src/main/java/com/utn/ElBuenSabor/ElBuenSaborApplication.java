@@ -1,6 +1,7 @@
 package com.utn.ElBuenSabor;
 
 import com.utn.ElBuenSabor.entities.*;
+import com.utn.ElBuenSabor.enums.Rol;
 import com.utn.ElBuenSabor.repositories.*;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -33,8 +34,14 @@ public class ElBuenSaborApplication {
 			String fechaString = "2023-09-09";
 			Date fecha = formatoFecha.parse(fechaString);
 
-			/* Crea y agrega domicilios al cliente
-			Cliente cliente = Cliente.builder()
+			/*Crea User   <---------NO ANDA
+			Usuario user = Usuario.builder()
+					.username("username123")
+					.rol(Rol.CLIENTE)
+					.build();
+
+			//Crea y agrega domicilios al cliente asociado a este usuario
+			Cliente cliente1 = Cliente.builder()
 					.apellido("Apellido")
 					.email("cliente@example.com")
 					.nombre("Nombre")
@@ -60,7 +67,12 @@ public class ElBuenSaborApplication {
 					.fechaAlta(new Date())
 					.fechaModificacion(new Date())
 					.fechaBaja(new Date())
-					.build(); */
+					.usuario(user) // Asociar el cliente con el usuario
+					.build();
+					//guardar cliente
+					clienteRepository.save(cliente1);
+					*/
+
 
 
 		};

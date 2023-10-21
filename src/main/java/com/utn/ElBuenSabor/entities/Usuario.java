@@ -1,5 +1,6 @@
 package com.utn.ElBuenSabor.entities;
 
+import com.utn.ElBuenSabor.enums.Rol;
 import jakarta.persistence.*;
 import lombok.*;
 import org.antlr.v4.runtime.misc.NotNull;
@@ -21,6 +22,10 @@ public class Usuario extends Base {
     @NotNull
     @Column(name = "username", nullable = false)
     private String username;
+
+    @NotNull
+    @Column(name = "rol", nullable = false)
+    private Rol rol;
 
     @NotNull
     @Column(name = "fecha_alta")
