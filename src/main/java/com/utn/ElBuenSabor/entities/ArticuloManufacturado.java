@@ -16,6 +16,7 @@ import java.util.Date;
 @Getter
 @Setter
 @ToString
+@Builder
 public class ArticuloManufacturado extends Base {
 
     @NotNull
