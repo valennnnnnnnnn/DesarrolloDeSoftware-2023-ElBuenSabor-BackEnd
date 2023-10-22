@@ -26,7 +26,6 @@ public class ArticuloManufacturadoServiceImpl extends BaseServiceImpl<ArticuloMa
         try{
             List<ArticuloManufacturado> articulosManufacturados = articuloManufacturadoRepository.findByNombreContaining(filtro);
             return articulosManufacturados;
-
         } catch (Exception e){
             throw new Exception(e.getMessage());
         }
@@ -37,7 +36,6 @@ public class ArticuloManufacturadoServiceImpl extends BaseServiceImpl<ArticuloMa
         try{
             Page<ArticuloManufacturado> articulosManufacturados = articuloManufacturadoRepository.findByNombreContaining(filtro, pageable);
             return articulosManufacturados;
-
         } catch (Exception e){
             throw new Exception(e.getMessage());
         }
