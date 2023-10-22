@@ -1,7 +1,7 @@
 package com.utn.ElBuenSabor;
 
 import com.utn.ElBuenSabor.entities.*;
-import com.utn.ElBuenSabor.enums.Rol;
+import com.utn.ElBuenSabor.enums.*;
 import com.utn.ElBuenSabor.repositories.*;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -19,6 +19,8 @@ public class ElBuenSaborApplication {
 	public DomicilioRepository domicilioRepository;
 	@Autowired
 	public ClienteRepository clienteRepository;
+	@Autowired
+	public UsuarioRepository usuarioRepository;
 
 
 	public static void main(String[] args) {
@@ -26,7 +28,7 @@ public class ElBuenSaborApplication {
 	}
 
 	@Bean
-	CommandLineRunner init(ClienteRepository clienteRepo, DomicilioRepository domicilioRepo) {
+	CommandLineRunner init(UsuarioRepository usuarioRepo, ClienteRepository clienteRepo, DomicilioRepository domicilioRepo ) {
 		return args -> {
 			System.out.println("-----------------ESTOY FUNCIONANDO---------");
 
@@ -34,11 +36,14 @@ public class ElBuenSaborApplication {
 			String fechaString = "2023-09-09";
 			Date fecha = formatoFecha.parse(fechaString);
 
-			/*Crea User   <---------NO ANDA
-			Usuario user = Usuario.builder()
+			//Crea User
+			Usuario user1 = Usuario.builder()
+					.auth0Id("auth0Id123")
 					.username("username123")
 					.rol(Rol.CLIENTE)
 					.build();
+			//guardar user
+			usuarioRepository.save(user1);
 
 			//Crea y agrega domicilios al cliente asociado a este usuario
 			Cliente cliente1 = Cliente.builder()
@@ -65,13 +70,11 @@ public class ElBuenSaborApplication {
 									.build()
 					))
 					.fechaAlta(new Date())
-					.fechaModificacion(new Date())
-					.fechaBaja(new Date())
-					.usuario(user) // Asociar el cliente con el usuario
+					.usuario(user1) // Asociar el cliente con el usuario
 					.build();
 					//guardar cliente
 					clienteRepository.save(cliente1);
-					*/
+
 
 
 
