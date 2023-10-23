@@ -6,7 +6,9 @@ import lombok.*;
 import org.antlr.v4.runtime.misc.NotNull;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "factura")
@@ -15,6 +17,7 @@ import java.util.Date;
 @Getter
 @Setter
 @Builder
+
 public class Factura extends Base {
 
     @NotNull
@@ -58,5 +61,16 @@ public class Factura extends Base {
     @OneToOne
     @JoinColumn(name = "id_pedido")
     private Pedido pedido;
+
+    @NotNull
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinTable (
+            name = "facturas_detalleFactura",
+            joinColumns = @JoinColumn(name = "id_factura"),
+            inverseJoinColumns = @JoinColumn(name = "id_detalleFactura")
+    )
+    private List<DetalleFactura> detalleFacturas = new ArrayList<DetalleFactura>();
+
+
 
 }

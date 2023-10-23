@@ -77,4 +77,9 @@ public class Pedido extends Base {
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaBaja;
 
+    @OneToOne()
+    @JoinColumn(name = "id_factura")
+    private Factura factura;
+
+
 }
