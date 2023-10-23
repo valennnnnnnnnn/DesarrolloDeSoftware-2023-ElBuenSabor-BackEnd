@@ -16,15 +16,13 @@ public class ArticuloManufacturadoServiceImpl extends BaseServiceImpl<ArticuloMa
     @Autowired
     private ArticuloManufacturadoRepository articuloManufacturadoRepository;
 
-    public ArticuloManufacturadoServiceImpl(BaseRepository<ArticuloManufacturado, Long> baseRepository, ArticuloManufacturadoRepository articuloManufacturadoRepository) {
+    public ArticuloManufacturadoServiceImpl(BaseRepository<ArticuloManufacturado, Long> baseRepository) {
         super(baseRepository);
-        this.articuloManufacturadoRepository = articuloManufacturadoRepository;
     }
-
     @Override
     public List<ArticuloManufacturado> search(String filtro) throws Exception {
         try{
-            List<ArticuloManufacturado> articulosManufacturados = articuloManufacturadoRepository.findByNombreContaining(filtro);
+            List<ArticuloManufacturado> articulosManufacturados = articuloManufacturadoRepository.findByDenominacionContaining(filtro);
             return articulosManufacturados;
         } catch (Exception e){
             throw new Exception(e.getMessage());
@@ -34,10 +32,12 @@ public class ArticuloManufacturadoServiceImpl extends BaseServiceImpl<ArticuloMa
     @Override
     public Page<ArticuloManufacturado> search(String filtro, Pageable pageable) throws Exception {
         try{
-            Page<ArticuloManufacturado> articulosManufacturados = articuloManufacturadoRepository.findByNombreContaining(filtro, pageable);
+            Page<ArticuloManufacturado> articulosManufacturados = articuloManufacturadoRepository.findByDenominacionContaining(filtro, pageable);
             return articulosManufacturados;
         } catch (Exception e){
             throw new Exception(e.getMessage());
         }
     }
+
+
 }

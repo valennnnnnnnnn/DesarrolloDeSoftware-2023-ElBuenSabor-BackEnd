@@ -17,9 +17,9 @@ public interface RecetaRepository extends BaseRepository<Receta,Long>{
 
     Page<Receta> findByNombreRecetaContaining(String nombreReceta, Pageable pageable);
     //Anotacion JPQL parametros nombrados
-    @Query(value = "SELECT r FROM Receta r WHERE p.nombreReceta LIKE %:filtro%")
+    @Query(value = "SELECT r FROM Receta r WHERE r.nombreReceta LIKE %:filtro%")
     List<Receta> search(@Param("filtro") String filtro);
 
-    @Query(value = "SELECT r FROM Receta r WHERE p.nombreReceta LIKE %:filtro%")
+    @Query(value = "SELECT r FROM Receta r WHERE r.nombreReceta LIKE %:filtro%")
     Page<Receta> search(@Param("filtro") String filtro, Pageable pageable);
 }

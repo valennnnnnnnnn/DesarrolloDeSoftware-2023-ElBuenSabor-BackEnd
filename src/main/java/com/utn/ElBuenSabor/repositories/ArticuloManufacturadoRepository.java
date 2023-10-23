@@ -11,14 +11,14 @@ import java.util.List;
 
 @Repository
 public interface ArticuloManufacturadoRepository extends BaseRepository<ArticuloManufacturado,Long>{
-    List<ArticuloManufacturado> findByNombreContaining(String nombre);
+    List<ArticuloManufacturado> findByDenominacionContaining(String nombre);
 
-    Page<ArticuloManufacturado> findByNombreContaining(String nombre, Pageable pageable);
+    Page<ArticuloManufacturado> findByDenominacionContaining(String nombre, Pageable pageable);
 
     //Anotacion JPQL
-    @Query(value = "SELECT p FROM ArticuloManufacturado a WHERE a.nombre LIKE %:filtro%")
+    @Query(value = "SELECT a FROM ArticuloManufacturado a WHERE a.denominacion LIKE %:filtro%")
     List<ArticuloManufacturado> search(@Param("filtro") String filtro);
 
-    @Query(value = "SELECT p FROM ArticuloManufacturado a WHERE a.nombre LIKE %:filtro%")
+    @Query(value = "SELECT a FROM ArticuloManufacturado a WHERE a.denominacion LIKE %:filtro%")
     Page<ArticuloManufacturado> search(@Param("filtro") String filtro, Pageable pageable);
 }
